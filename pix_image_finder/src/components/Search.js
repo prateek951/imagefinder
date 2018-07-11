@@ -3,6 +3,7 @@ import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import axios from 'axios';
+import ImageContainer from './ImageContainer';
 
 class Search extends PureComponent {
     state = {
@@ -46,7 +47,7 @@ class Search extends PureComponent {
             placeholder: '20'
         }
     ]
-    return items.map(item => <MenuItem value={item.limit} primaryText={item.placeholder}/>)
+    return items.map(item => <MenuItem value={item.limit} key={item.limit} primaryText={item.placeholder}/>)
     }
     render() {
         // console.log(this.state.images);
@@ -68,14 +69,15 @@ class Search extends PureComponent {
                     >
                     {this.renderMenuItems()}
                 </SelectField>
+
+                {this.state.images.length > 0 ? 
+                <ImageContainer images = {this.state.images}/>
+                : null}
             </div>
 
         );
     }
 }
 
-Search.propTypes = {
-
-};
 
 export default Search;

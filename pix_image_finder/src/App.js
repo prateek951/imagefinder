@@ -11,8 +11,8 @@ class App extends Component {
      <MuiThemeProvider>
        <div>
          <Navbar/>
+         <Search/>
        </div>
-       <Search/>
      </MuiThemeProvider>
     );
   }
