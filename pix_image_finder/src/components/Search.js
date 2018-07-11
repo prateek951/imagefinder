@@ -14,17 +14,21 @@ class Search extends PureComponent {
         images: []
     }
     onTextChange = e => {
-        this.setState({[e.target.name]: e.target.value},() => {
-            axios.get(`${this.state.apiUrl}/?key=${this.state.apiKey}&q=${this.state.searchText}&image_type=phone&per_page=${this.state.amount}&safesearch=true`)
+        const val = e.target.value;
+        this.setState({[e.target.name]: val},() => {
+            if(val === " "){
+                this.setState({images: []});
+            }else{
+                axios.get(`${this.state.apiUrl}/?key=${this.state.apiKey}&q=${this.state.searchText}&image_type=phone&per_page=${this.state.amount}&safesearch=true`)
             .then(response => {
                 console.log(response.data.hits);
                 this.setState({
                     images: response.data.hits
                 });
             }).catch(err => console.log(`An error occured while fetching the images from the api`));
-        })
-    
-    }
+            }
+        });
+    };
 
     onAmountChange = (e,index,value) => this.setState({amount: value});
 
