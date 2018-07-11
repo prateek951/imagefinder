@@ -24,6 +24,9 @@ class Search extends PureComponent {
         })
     
     }
+
+    onAmountChange = (e,index,value) => this.setState({amount: value});
+
     renderMenuItems(){
         let items = [
         {
